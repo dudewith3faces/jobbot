@@ -29,8 +29,13 @@ const screenName = 'abothasnoface';
 const filter: Params = {
   // lat: 6.5244,
   // long: 3.3792,
-  // @ts-ignore: add location box
-  locations: [2.69170169436, 4.24059418377, 14.5771777686, 13.8659239771],
+  // @ts-ignore: add location box; Nigeria location box
+  locations: [
+    '2.69170169436',
+    '4.24059418377',
+    '14.5771777686',
+    '13.8659239771',
+  ],
   result_type: 'mixed',
   track,
 };

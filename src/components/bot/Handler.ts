@@ -36,7 +36,6 @@ export class BotHandler {
       }
       if (!status) return;
 
-      logger.info(status);
       await this.postTweet({ status });
       return;
     } catch (e) {
@@ -63,12 +62,9 @@ export class BotHandler {
      * const jobReg =
      * /ˆ((?=.*(#)?hiring)|((?=.*(#)?vacant)((?=.*(#)?position)|(?=.*(#)?role)|(?=.*(#)?job))))/gim;
      */
-    const jobReg = /hiring|vacancies|vacany|send your cv|send your resume|needed/;
-
-    const locations = /lagos|ekiti|ibadan|ilorin|abuja/;
+    const jobReg = /hiring|vacancies|vacany|send your cv|send your resume/;
 
     if (jobReg.test(text)) {
-      if (locations.test(text)) logger.info('nigeria');
       status = text + `\n\nBy @${screen_name} #jobBot.`;
       if (status.length > 240) status = text + ' #jobBot.';
     }
