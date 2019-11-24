@@ -13,16 +13,16 @@ export class AuthAPITest {
   }
 
   private req() {
-    return request(`localhost:${PORT}/api/auth`);
+    return request(`localhost:${PORT}/api/bot`);
   }
 
   private test() {
-    it('GET /api/auth/test', async () => {
+    it('GET /api/bot/test', async () => {
       try {
         const { status, body } = await this.req().get('/test');
         assert.equal(status, 200, 'reponse should be 200');
         assert.isObject(body);
-        assert.equal(
+        assert.strictEqual(
           body.msg,
           'auth test route work',
           "msg should be 'auth test route work'",
