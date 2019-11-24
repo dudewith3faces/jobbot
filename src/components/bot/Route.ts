@@ -1,8 +1,8 @@
 import Router from 'koa-router';
-import { AuthController } from './Controller';
+import { BotController } from './Controller';
 
-export class AuthAPI {
-  private readonly router = new Router({ prefix: '/auth' });
+export class BotRoute {
+  private readonly router = new Router({ prefix: '/bot' });
   constructor() {
     this.get();
     this.post();
@@ -19,11 +19,12 @@ export class AuthAPI {
      * @route  api/auth/test
      * @desc   Test auth route
      * */
-    this.router.get('/test', AuthController.test);
+    this.router.get('/test', BotController.test);
   }
 
   private post() {
     // put post routes here
+    this.router.post('/new', BotController.postTweet);
   }
 
   private delete() {

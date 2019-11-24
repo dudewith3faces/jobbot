@@ -1,9 +1,9 @@
 import Router from 'koa-router';
-import { AuthAPI } from './auth';
+import { BotRoute } from './bot';
 
-export class API {
+export class Route {
   private readonly index = new Router({ prefix: '/api' });
-  private readonly auth = new AuthAPI().route();
+  private readonly bot = new BotRoute().route();
 
   constructor() {
     this.route();
@@ -15,6 +15,6 @@ export class API {
   }
 
   private api() {
-    this.index.use(this.auth);
+    this.index.use(this.bot);
   }
 }

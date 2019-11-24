@@ -2,6 +2,6 @@ import { config } from 'dotenv';
 
 config();
 
-export { emails } from './email';
+export { filter, screenName, postSecret } from './bot';
 export { log } from './log';
 export { PORT, env, hostname, sslOpt } from './server';

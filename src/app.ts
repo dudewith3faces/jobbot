@@ -1,17 +1,8 @@
-import { createServer } from 'https';
-import { API, Emit, Events } from './components';
-import {
-  allMiddleware,
-  app,
-  env,
-  hostname,
-  listener,
-  PORT,
-  sslOpt,
-} from './config';
+import { BotStream, Emit, Events, Route } from './components';
+import { allMiddleware, app, hostname, listener, PORT } from './config';
 
 export default class App {
-  private readonly api = new API().route();
+  private readonly route = new Route().route();
   constructor() {
     this.build();
   }
@@ -19,7 +10,8 @@ export default class App {
   private build(): void {
     this.event();
     this.middleware();
-    this.route();
+    this.bot();
+    this.api();
     this.listen();
   }
 
@@ -27,19 +19,21 @@ export default class App {
     app.use(allMiddleware);
   }
 
-  private route(): void {
-    app.use(this.api);
+  private api(): void {
+    app.use(this.route);
   }
 
   private event(): void {
     (() => new Events())();
   }
 
+  private bot(): void {
+    (() => new BotStream())();
+  }
+
   private listen(): void {
     try {
-      if (env === 'dev') app.listen(PORT, hostname, listener);
-      else
-        createServer(sslOpt, app.callback()).listen(PORT, hostname, listener);
+      app.listen(PORT, hostname, listener);
     } catch (e) {
       Emit.error(e);
     }
